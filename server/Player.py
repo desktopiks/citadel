@@ -1,4 +1,4 @@
-from backend.Characters.Character import Character
+from server.Characters.Character import Character
 
 
 class Player(object):
