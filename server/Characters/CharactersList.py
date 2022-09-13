@@ -28,4 +28,4 @@ class CharactersList(Enum):
 
     @staticmethod
     def default_characters():
-        return [i for i in CharactersList if i.value % 10]
+        return [i for i in CharactersList if i.value % 10 == 0]

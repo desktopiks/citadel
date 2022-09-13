@@ -14,5 +14,4 @@ class Player(object):
         pass
 
     def get_progress_information(self):
-
         pass
