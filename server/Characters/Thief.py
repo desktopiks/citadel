@@ -2,10 +2,10 @@ from CharactersList import CharactersList
 from server.Characters.Character import Character
 
 
-class Assassin(Character):
+class Thief(Character):
 
     def __init__(self):
-        super().__init__(CharactersList.Assassin)
+        super().__init__(CharactersList.Thief)
         self.choose_character = None
 
     def action(self, character_name):
@@ -14,14 +14,9 @@ class Assassin(Character):
 
     def get_progress_information(self):
         """Print info of this action"""
-        return super(Assassin, self).get_progress_information(self).format("kill {}").format(self.choose_character)
+        return super(Thief, self).get_progress_information(self).format("rob {}").format(self.choose_character)
 
     def get_info(self):
         """Print info of this character"""
-        return super(Assassin, self).get_info(self).format(self.character_name, "choose any character and kill him")
+        return super(Thief, self).get_info(self).format(self.character_name, "choose any character and rob him")
 
-
-t1 = Assassin()
-t1.action(CharactersList.King)
-print(t1.get_info())
-print(t1.get_progress_information())

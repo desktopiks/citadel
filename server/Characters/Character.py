@@ -3,19 +3,23 @@ class Character(object):
 
     def __init__(self, character_name):
         """Constructor"""
-        self.choose_character = None
         self.character_name = character_name
 
     def action(self, character_name):
         """The action of this character"""
-        self.choose_character = character_name
         pass
 
+    @staticmethod
     def get_info(self):
         """Print info of this character"""
-        pass
+        return '''You play for {}
+     In your turn, you need to {}
+        '''
 
+    @staticmethod
     def get_progress_information(self):
         """Print info of this action"""
-        pass
+        return 'In your turn you {} '
+
+
 
