@@ -2,6 +2,7 @@ from enum import Enum
 
 
 class CharactersList(Enum):
+    Null = 0
     Assassin = 10
     Witch = 11
     Thief = 20
@@ -20,3 +21,11 @@ class CharactersList(Enum):
     Diplomat = 81
     Artist = 91
     Queen = 92
+
+    @staticmethod
+    def all_characters():
+        return [i for i in CharactersList]
+
+    @staticmethod
+    def default_characters():
+        return [i for i in CharactersList if i.value % 10]
