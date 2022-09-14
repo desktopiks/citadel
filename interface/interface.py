@@ -10,9 +10,9 @@ def application():
     window.setWindowTitle('Citadel')
     window.setGeometry(400, 250, 500, 300)
 
-    main_text = QtWidgets.QLabel(window) #текст в центре
-    main_text.setText('Citadel') #текст в центре
-    main_text.move(225, 125) #текст в центре
+    main_text = QtWidgets.QLabel(window) #text in the center
+    main_text.setText('Citadel') #text in the center
+    main_text.move(225, 125) #text in the center
 
     window.show()
     sys.exit(app.exec())
