@@ -15,23 +15,16 @@ class Magician(Character):
         facedown at the bottom of the District Deck, and
         then draw an equal number of cards from the top
         of the District Deck."""
-        self.choose_move = True
+        self.character_name = None
 
-    def action(self, choose_move):
+    def action(self, character_name=None):
         """The action of this character"""
-        self.choose_move = choose_move
+        self.character_name = character_name
 
     def get_progress_information(self):
         """Print info of this action"""
-        return super(Magician, self).get_progress_information(self).format(self.first_move if self.choose_move else self.second_move)
+        return super(Magician, self).get_progress_information(self).format(self.first_move if self.character_name else self.second_move)
 
     def get_info(self):
         """Print info of this character"""
-        return super(Magician, self).get_info(self).format(self.character_name, """{} \n Or \n {}""").format(
-            self.first_move, self.second_move)
-
-
-t1 = Magician()
-t1.action(CharactersList.King)
-print(t1.get_info())
-print(t1.get_progress_information())
+        return super(Magician, self).get_info(self).format(self.character_name, """{} \n Or \n {}""").format(self.first_move, self.second_move)

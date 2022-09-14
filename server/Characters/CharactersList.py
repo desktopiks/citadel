@@ -1,31 +1,33 @@
+import random
 from enum import Enum
+from random import randrange
 
 
 class CharactersList(Enum):
-    Null = 0
-    Assassin = 10
-    Witch = 11
-    Thief = 20
-    TaxCollector = 21
-    Magician = 30
-    Wizard = 31
-    King = 40
-    Emperor = 41
-    Bishop = 50
-    Abbot = 51
-    Merchant = 60
-    Alchemist = 61
-    Architect = 70
-    Navigator = 71
-    Warlord = 80
-    Diplomat = 81
-    Artist = 91
-    Queen = 92
+    Assassin = 1
+    Witch = 2
+    Thief = 3
+    TaxCollector = 4
+    Magician = 5
+    Wizard = 6
+    King = 7
+    Emperor = 8
+    Bishop = 9
+    Abbot = 10
+    Merchant = 11
+    Alchemist = 12
+    Architect = 13
+    Navigator = 14
+    Warlord = 15
+    Diplomat = 16
+    Artist = 17
+    Queen = 18
 
     @staticmethod
-    def all_characters():
-        return [i for i in CharactersList]
+    def all_characters(number):
+        return random.choices([i for i in CharactersList], k=number)
 
     @staticmethod
-    def default_characters():
-        return [i for i in CharactersList if i.value % 10 == 0]
+    def default_characters(number):
+        return random.choices([i for i in CharactersList if i.value % 2 == 1 and i.value < 16], k=number)
+

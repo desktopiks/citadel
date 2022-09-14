@@ -20,8 +20,3 @@ class Assassin(Character):
         """Print info of this character"""
         return super(Assassin, self).get_info(self).format(self.character_name, "choose any character and kill him")
 
-
-t1 = Assassin()
-t1.action(CharactersList.King)
-print(t1.get_info())
-print(t1.get_progress_information())

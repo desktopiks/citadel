@@ -24,9 +24,3 @@ during the next round."""
     def get_info(self):
         """Print info of this character"""
         return super(King, self).get_info(self).format(self.character_name, self.text)
-
-
-t1 = King()
-t1.action(CharactersList.King)
-print(t1.get_info())
-print(t1.get_progress_information())
