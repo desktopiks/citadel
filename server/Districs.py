@@ -5,7 +5,7 @@ from enum import Enum
 class DistrictTypeList(Enum):
     Bonus = 0
     Military = 1
-    Church = 2
+    Religious = 2
     Noble = 3
     Trade = 4
 
@@ -27,10 +27,10 @@ class DistrictsList(Enum):
     The_Field_of_Mars = District("the Field of Mars", DistrictTypeList.Military, 3, 3)
     Fortress = District("fortress", DistrictTypeList.Military, 5, 2)
 
-    Temple = District("temple", DistrictTypeList.Church, 1, 3)
-    Church = District("church", DistrictTypeList.Church, 2, 3)
-    Monastery = District("monastery", DistrictTypeList.Church, 3, 3)
-    Cathedral = District("cathedral", DistrictTypeList.Church, 5, 2)
+    Temple = District("temple", DistrictTypeList.Religious, 1, 3)
+    Church = District("church", DistrictTypeList.Religious, 2, 3)
+    Monastery = District("monastery", DistrictTypeList.Religious, 3, 3)
+    Cathedral = District("cathedral", DistrictTypeList.Religious, 5, 2)
 
     Estate = District("estate", DistrictTypeList.Noble, 3, 5)
     Castle = District("castle", DistrictTypeList.Noble, 4, 4)
