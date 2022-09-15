@@ -5,7 +5,7 @@ from server.Characters.Character import Character
 class Bishop(Character):
 
     def __init__(self):
-        super().__init__(CharactersList.Assassin)
+        super().__init__(CharactersList.Bishop)
 
     def action(self, character_name=None):
         """The action of this character"""

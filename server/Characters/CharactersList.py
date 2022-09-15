@@ -1,6 +1,5 @@
 import random
 from enum import Enum
-from random import randrange
 
 
 class CharactersList(Enum):
