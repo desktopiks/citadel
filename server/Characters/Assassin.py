@@ -7,12 +7,13 @@ class Assassin(Character):
     def __init__(self):
         super().__init__(CharactersList.Assassin)
         self.choose_character = None
+        self.text = "Choose any character and kill him"
 
     def action(self, character_name):
         """The action of this character"""
         self.choose_character = character_name
 
-    def get_progress_information(self):
+    def get_progress_information(self, districts_in_hand=None):
         """Print info of this action"""
         return super(Assassin, self).get_progress_information(self).format("kill {}").format(self.choose_character)
 

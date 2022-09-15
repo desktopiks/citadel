@@ -1,5 +1,6 @@
 from CharactersList import CharactersList
 from server.Characters.Character import Character
+from server.District import DistrictTypeList, DistrictsList
 
 
 class King(Character):
@@ -17,10 +18,14 @@ during the next round."""
         """The action of this character"""
         pass
 
-    def get_progress_information(self):
+    def get_progress_information(self, districts_in_hand):
         """Print info of this action"""
-        return super(King, self).get_progress_information(self).format("must be strong")
+        return super(King, self).get_progress_information(self).format("You receive {} gold").format(
+            len(list(filter(lambda x: x.value.type_of_district == DistrictTypeList.Noble, districts_in_hand))))
 
     def get_info(self):
         """Print info of this character"""
         return super(King, self).get_info(self).format(self.character_name, self.text)
+
+
+print(King().get_progress_information(DistrictsList.take_the_cards(4)))

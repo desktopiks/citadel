@@ -15,7 +15,7 @@ class Player(object):
         pass
 
     def get_progress_information(self):
-        return self.character.get_progress_information(self)
+        return self.character.get_progress_information(self, self.districts_in_table)
 
     def get_districts_in_hand(self, list_of_districts):
         self.districts_in_hand.extend(list_of_districts)
