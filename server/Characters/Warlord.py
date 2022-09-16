@@ -20,15 +20,17 @@ however, destroy a district in a city that is already
 completed by having eight districts (or seven 
 districts when the Bell Tower is in play)."""
 
-    def action(self, character_name):
+    def action(self, self_player, other_player):
         """The action of this character"""
-        self.choose_character = character_name
+        self_player.change_gold(self.get_gold(self_player.districts_in_table))
 
-    def get_progress_information(self, districts_in_hand):
+    def get_progress_information(self, districts_in_table):
         """Print info of this action"""
-        return super(Warlord, self).get_progress_information(self).format("You receive {} gold").format(len(list(filter(lambda x: x.value.type_of_district == DistrictTypeList.Religious, districts_in_hand))))
+        return super().get_progress_information(self).format("You receive {} gold {}").format(self.get_gold(districts_in_table))
 
     def get_info(self):
         """Print info of this character"""
-        return super(Warlord, self).get_info(self).format(self.character_name, self.text)
+        return super().get_info(self).format(self.character_name, self.text)
 
+    def get_gold(self, districts_in_table):
+        return len(list(filter(lambda x: x.value.type_of_district == DistrictTypeList.Religious, districts_in_table)))

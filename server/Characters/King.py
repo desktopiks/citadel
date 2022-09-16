@@ -14,18 +14,20 @@ the Crown. You now call the characters, and you
 will be the first player to choose your character
 during the next round."""
 
-    def action(self, character_name):
+    def action(self, self_player, other_player):
         """The action of this character"""
-        pass
+        self_player.change_gold(self.get_gold(self_player.districts_in_table))
 
-    def get_progress_information(self, districts_in_hand):
+    def get_progress_information(self, districts_in_table):
         """Print info of this action"""
-        return super(King, self).get_progress_information(self).format("You receive {} gold").format(
-            len(list(filter(lambda x: x.value.type_of_district == DistrictTypeList.Noble, districts_in_hand))))
+        return super(King, self).get_progress_information(self).format("You receive {} gold").format(self.get_gold(districts_in_table))
 
     def get_info(self):
         """Print info of this character"""
-        return super(King, self).get_info(self).format(self.character_name, self.text)
+        return super().get_info(self).format(self.character_name, self.text)
+
+    def get_gold(self, districts_in_table):
+        len(list(filter(lambda x: x.value.type_of_district == DistrictTypeList.Noble, districts_in_table)))
 
 
 print(King().get_progress_information(DistrictsList.take_the_cards(4)))

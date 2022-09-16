@@ -9,9 +9,10 @@ class Assassin(Character):
         self.choose_character = None
         self.text = "Choose any character and kill him"
 
-    def action(self, character_name):
+    def action(self, self_player, other_player):
         """The action of this character"""
-        self.choose_character = character_name
+        self.choose_character = other_player.character
+        other_player.character = None
 
     def get_progress_information(self, districts_in_hand=None):
         """Print info of this action"""

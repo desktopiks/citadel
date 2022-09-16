@@ -9,15 +9,17 @@ class Thief(Character):
         self.choose_character = None
         self.text = "choose any character and rob him"
 
-    def action(self, character_name):
+    def action(self, self_player, other_player):
         """The action of this character"""
-        self.choose_character = character_name
+        self.choose_character = other_player.character
+        self_player.change_gold(other_player.gold)
+        other_player.change_gold(-other_player.gold)
 
     def get_progress_information(self, districts_in_hand=None):
         """Print info of this action"""
-        return super(Thief, self).get_progress_information(self).format("rob {}").format(self.choose_character)
+        return super().get_progress_information(self).format("rob {}").format(self.choose_character)
 
     def get_info(self):
         """Print info of this character"""
-        return super(Thief, self).get_info(self).format(self.character_name, self.text)
+        return super().get_info(self).format(self.character_name, self.text)
 

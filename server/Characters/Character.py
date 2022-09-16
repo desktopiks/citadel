@@ -5,7 +5,7 @@ class Character(object):
         """Constructor"""
         self.character_name = character_name
 
-    def action(self, character_name):
+    def action(self, self_player, other_player):
         """The action of this character"""
         pass
 
