@@ -20,7 +20,7 @@ during the next round."""
 
     def get_progress_information(self, districts_in_table):
         """Print info of this action"""
-        return super(King, self).get_progress_information(self).format("You receive {} gold").format(self.get_gold(districts_in_table))
+        return super(King, self).get_progress_information(self, districts_in_table).format("You receive {} gold").format(self.get_gold(districts_in_table))
 
     def get_info(self):
         """Print info of this character"""
@@ -31,4 +31,4 @@ during the next round."""
         len(list(filter(lambda x: x.value.type_of_district == DistrictTypeList.Noble, districts_in_table)))
 
 
-# print(King().get_progress_information(DistrictsList.take_the_cards(4)))
+print(King().get_progress_information(DistrictsList.take_the_cards(4, DistrictTypeList.Noble)))

@@ -48,4 +48,4 @@ class DistrictsList(Enum):
         return random.choices([i for i in DistrictsList if (type_of_district is None or i.value.type_of_district == type_of_district)], k=number)
 
 
-print(DistrictsList.take_the_cards(6, DistrictTypeList.Trade))
+# print(DistrictsList.take_the_cards(6, DistrictTypeList.Trade))

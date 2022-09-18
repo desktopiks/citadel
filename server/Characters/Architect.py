@@ -26,5 +26,5 @@ class Architect(Character):
     def number_of_districts_can_build(self):
         return 3
 
-
-print(Architect().get_progress_information())
+A = Architect()
+print(A.get_progress_information())

@@ -12,10 +12,10 @@ class Player(object):
         self.gold = 2
 
     def choose_character(self, character):
-        self.character = character
+        self.character = Character(character.name)
 
     def get_info(self):
-        pass
+        self.character.get_info(self.character)
 
     def get_progress_information(self):
         return self.character.get_progress_information(self.character, self.districts_in_table) if self.character else ""
@@ -26,9 +26,10 @@ class Player(object):
     def put_cards_on_the_table(self, districts):
         for district in districts:
             if district not in self.districts_in_table:
+                print(type(self.districts_in_hand))
                 self.districts_in_hand.remove(district)
                 self.districts_in_table.add(district)
-                self.change_gold(district.price)
+                self.change_gold(district.value.price)
 
     def character_move(self, other_player, district):
         if self.character == CharactersList.Assassin:
@@ -72,3 +73,20 @@ class Player(object):
 
     def number_of_districts_can_build(self):
         return self.character.number_of_districts_can_build()
+
+
+player1 = Player("Alex")
+player2 = Player("Ksenia")
+player3 = Player('Artem')
+
+player2.choose_character(CharactersList.Thief)
+player1.choose_character(CharactersList.Assassin)
+player3.choose_character(CharactersList.Bishop)
+
+for i in [player1, player2, player3]:
+    i.character_move(player2, [])
+    i.second_move(1)
+    # i.second_move_path_two()
+    i.after_move()
+    i.get_info()
+    i.put_cards_on_the_table(i.districts_in_hand[1:3])

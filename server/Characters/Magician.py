@@ -37,3 +37,5 @@ class Magician(Character):
         """Print info of this character"""
         return super().get_info(self).format(self.character_name, """{} \n Or \n {}""").format(self.first_move, self.second_move)
 
+A = Magician()
+print(A.get_progress_information())

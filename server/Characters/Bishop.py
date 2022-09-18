@@ -27,3 +27,4 @@ class Bishop(Character):
 
     def is_warlord_can_destroy_your_districts(self):
         return False
+
