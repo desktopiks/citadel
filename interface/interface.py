@@ -1,21 +1,33 @@
-from PyQt6 import QtWidgets
-from PyQt6.QtWidgets import QApplication, QMainWindow
-
 import sys
+from PyQt5.QtWidgets import QApplication, QWidget
 
-def application():
+
+class Example(QWidget):
+
+    def __init__(self):
+        super().__init__()
+
+        self.initUI()  #Drawing the interface to method InitUi
+
+    def initUI(self):
+        self.desktop = QApplication.desktop()
+
+        #Get the screen sizes 
+        self.screenRect = self.desktop.screenGeometry()
+        self.height = self.screenRect.height()
+        self.width = self.screenRect.width()
+
+        #Show the window
+        self.show()
+
+
+def Application():
     app = QApplication(sys.argv)
-    window = QMainWindow()
+    ex = Example()
+    ex.setWindowTitle('Citadels')
+    sys.exit(app.exec_())
 
-    window.setWindowTitle('Citadel')
-    window.setGeometry(400, 250, 500, 300)
-
-    main_text = QtWidgets.QLabel(window) #text in the center
-    main_text.setText('Citadel') #text in the center
-    main_text.move(225, 125) #text in the center
-
-    window.show()
-    sys.exit(app.exec())
 
 if __name__ == '__main__':
-    application()
+    #Creating apps and objects
+    Application()
