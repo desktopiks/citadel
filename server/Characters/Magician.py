@@ -1,5 +1,6 @@
 from CharactersList import CharactersList
 from server.Characters.Character import Character
+from server.District import DistrictsList
 
 
 class Magician(Character):
@@ -15,16 +16,23 @@ class Magician(Character):
         facedown at the bottom of the District Deck, and
         then draw an equal number of cards from the top
         of the District Deck."""
-        self.character_name = None
+        self.list_of_the_card = None
 
-    def action(self, character_name=None):
+    def action(self, self_player, other_player, list_of_the_districts):
         """The action of this character"""
-        self.character_name = character_name
+        self.list_of_the_card = list_of_the_districts
+        if other_player:
+            other_player.districts_in_hand, self_player.districts_in_hand = self_player.districts_in_hand, other_player.districts_in_hand
+        else:
+            for i in self.list_of_the_card:
+                self_player.districts_in_hand.remove(i)
+            self.list_of_the_card = DistrictsList.take_the_cards(len(self.list_of_the_card))
+            self_player.districts_in_hand.extend(self.list_of_the_card)
 
     def get_progress_information(self):
         """Print info of this action"""
-        return super(Magician, self).get_progress_information(self).format(self.first_move if self.character_name else self.second_move)
+        return super().get_progress_information(self).format("Your change {} cards").format(len(self.list_of_the_card) if self.list_of_the_card else 0)
 
     def get_info(self):
         """Print info of this character"""
-        return super(Magician, self).get_info(self).format(self.character_name, """{} \n Or \n {}""").format(self.first_move, self.second_move)
+        return super().get_info(self).format(self.character_name, """{} \n Or \n {}""").format(self.first_move, self.second_move)

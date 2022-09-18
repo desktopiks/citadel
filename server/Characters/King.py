@@ -1,5 +1,7 @@
 from CharactersList import CharactersList
 from server.Characters.Character import Character
+from server.District import DistrictTypeList, DistrictsList
+from server.Player import Player
 
 
 class King(Character):
@@ -12,15 +14,18 @@ class King(Character):
         the Crown. You now call the characters, and you
         will be the first player to choose your character
         during the next round."""
+        self.gold = 0
 
-    def action(self, character_name):
+    def action(self, self_player, other_player, list_of_the_districts):
         """The action of this character"""
-        pass
+        self.gold = len(list(filter(lambda x: x.value.type_of_district == DistrictTypeList.Noble, list_of_the_districts)))
+        self_player.change_gold(self.gold)
 
     def get_progress_information(self):
         """Print info of this action"""
-        return super(King, self).get_progress_information(self).format("must be strong")
+        return super(King, self).get_progress_information(self).format("receive {} gold").format(self.gold)
 
     def get_info(self):
         """Print info of this character"""
-        return super(King, self).get_info(self).format(self.character_name, self.text)
+        return super().get_info(self).format(self.character_name, self.text)
+

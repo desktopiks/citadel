@@ -1,17 +1,94 @@
 from server.Characters.Character import Character
+from server.Characters.CharactersList import CharactersList
+from server.District import DistrictsList
 
 
 class Player(object):
-
     def __init__(self, player_name):
         self.character = Character(None)
         self.player_name = player_name
+        self.districts_in_hand = DistrictsList.take_the_cards(4)
+        self.districts_in_table = set()
+        self.gold = 2
 
     def choose_character(self, character):
-        self.character = character
+        self.character = Character(character.name)
 
     def get_info(self):
-        pass
+        self.character.get_info(self.character)
 
     def get_progress_information(self):
-        pass
+        return self.character.get_progress_information(self.character) if self.character else ""
+
+    def get_districts_in_hand(self, list_of_districts):
+        self.districts_in_hand.extend(list_of_districts) if self.character else ""
+
+    def put_cards_on_the_table(self, districts):
+        for district in districts:
+            if district not in self.districts_in_table:
+                self.districts_in_hand.remove(district)
+                self.districts_in_table.add(district)
+                self.change_gold(district.value.price)
+
+    def character_move(self, other_player, district):
+        match self.character:
+            case CharactersList.Assassin:
+                self.character.action(self, other_player, None)
+            case CharactersList.Thief:
+                self.character.action(self, other_player, None)
+            case CharactersList.Magician:
+                self.character.action(self, other_player, [])
+            case CharactersList.King:
+                self.character.action(self, None, None)
+            case CharactersList.Bishop:
+                self.character.action(self, None, None)
+            case CharactersList.Merchant:
+                self.character.action(self, None, None)
+            case CharactersList.Architect:
+                self.character.action(self, None, None)
+            case CharactersList.Warlord:
+                self.character.action(self, other_player, district)
+
+    def second_move(self, change_move):
+        if change_move == 1:
+            self.change_gold(2)
+            return None
+        elif change_move == 2:
+            return DistrictsList.take_the_cards(2)
+
+    def after_move(self):
+        if self.character == CharactersList.Architect:
+            self.get_districts_in_hand(DistrictsList.take_the_cards(2))
+        elif self.character == CharactersList.Merchant:
+            self.change_gold(1)
+
+    def second_move_path_two(self, district):
+        self.get_districts_in_hand([district])
+
+    def return_districts(self):
+        return self.districts_in_table, self.districts_in_hand
+
+    def change_gold(self, number):
+        self.gold += number
+
+    def number_of_districts_can_build(self):
+        return self.character.number_of_districts_can_build()
+
+
+# player1 = Player("Alex")
+# player2 = Player("Ksenia")
+# player3 = Player('Artem')
+# player4 = Player('Dima')
+#
+# player2.choose_character(CharactersList.Thief)
+# player1.choose_character(CharactersList.Assassin)
+# player3.choose_character(CharactersList.Bishop)
+# player4.choose_character(CharactersList.Merchant)
+#
+# for i in [player1, player2, player3, player4]:
+#     i.character_move(player2, [])
+#     i.second_move(1)
+#     i.second_move_path_two([])
+#     i.after_move()
+#     i.get_info()
+#     i.put_cards_on_the_table(i.districts_in_hand[1:3])
