@@ -15,7 +15,7 @@ class Thief(Character):
         self_player.change_gold(other_player.gold)
         other_player.change_gold(-other_player.gold)
 
-    def get_progress_information(self, districts_in_hand=None):
+    def get_progress_information(self):
         """Print info of this action"""
         return super().get_progress_information(self).format("rob {}").format(self.choose_character)
 

@@ -14,9 +14,9 @@ class Assassin(Character):
         self.choose_character = other_player.character
         other_player.character = None
 
-    def get_progress_information(self, districts_in_hand=None):
+    def get_progress_information(self):
         """Print info of this action"""
-        return super(Assassin, self).get_progress_information(self, None).format("kill {}").format(self.choose_character)
+        return super(Assassin, self).get_progress_information(self).format("kill {}").format(self.choose_character)
 
     def get_info(self):
         """Print info of this character"""

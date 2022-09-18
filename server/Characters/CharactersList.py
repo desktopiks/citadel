@@ -29,6 +29,3 @@ class CharactersList(Enum):
     @staticmethod
     def default_characters(number):
         return random.choices([i for i in CharactersList if i.value % 2 == 1 and i.value < 16], k=number)
-
-
-print(CharactersList.default_characters(2))

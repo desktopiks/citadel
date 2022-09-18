@@ -29,13 +29,10 @@ class Magician(Character):
             self.list_of_the_card = DistrictsList.take_the_cards(len(self.list_of_the_card))
             self_player.districts_in_hand.extend(self.list_of_the_card)
 
-    def get_progress_information(self, districts=None):
+    def get_progress_information(self):
         """Print info of this action"""
-        return super().get_progress_information(self, None).format("Your change {} cards").format(len(self.list_of_the_card))
+        return super().get_progress_information(self).format("Your change {} cards").format(len(self.list_of_the_card) if self.list_of_the_card else 0)
 
     def get_info(self):
         """Print info of this character"""
         return super().get_info(self).format(self.character_name, """{} \n Or \n {}""").format(self.first_move, self.second_move)
-
-A = Magician()
-print(A.get_progress_information())

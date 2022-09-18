@@ -17,7 +17,7 @@ class Character(object):
         '''
 
     @staticmethod
-    def get_progress_information(self, districts):
+    def get_progress_information(self):
         """Print info of this action"""
         return 'In your turn you {} '
 

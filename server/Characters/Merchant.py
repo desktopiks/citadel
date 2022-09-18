@@ -12,9 +12,9 @@ class Merchant(Character):
         """The action of this character"""
         self_player.change_gold(self.get_gold(self_player.districts_in_table))
 
-    def get_progress_information(self, districts_in_table):
+    def get_progress_information(self):
         """Print info of this action"""
-        return super().get_progress_information(self, None).format("You receive {} gold").format(self.get_gold(districts_in_table))
+        return super().get_progress_information(self).format("You receive {} gold").format(self.get_gold(districts_in_table))
 
     def get_info(self):
         """Print info of this character"""

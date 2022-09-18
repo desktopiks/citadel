@@ -1,6 +1,6 @@
 from CharactersList import CharactersList
 from server.Characters.Character import Character
-from server.District import DistrictTypeList
+from server.District import DistrictTypeList, DistrictsList
 
 
 class Warlord(Character):
@@ -19,23 +19,22 @@ destroy one of your own districts. You may not,
 however, destroy a district in a city that is already 
 completed by having eight districts (or seven 
 districts when the Bell Tower is in play)."""
+        self.gold = 0
 
     def action(self, self_player, other_player, district):
         """The action of this character"""
-        self_player.change_gold(self.get_gold(self_player.districts_in_table))
+        self.gold = len(list(filter(lambda x: x.value.type_of_district == DistrictTypeList.Religious, self_player.districts_in_table)))
+        self_player.change_gold(self.gold)
         other_player.districts_in_table.remove(district)
 
-    def get_progress_information(self, districts_in_table):
+    def get_progress_information(self):
         """Print info of this action"""
-        return super().get_progress_information(self, None).format("You receive {} gold {}").format(self.get_gold(districts_in_table))
+        return super().get_progress_information(self).format("You receive {} gold {}").format(self.gold)
 
     def get_info(self):
         """Print info of this character"""
         return super().get_info(self).format(self.character_name, self.text)
 
-    @staticmethod
-    def get_gold(districts_in_table):
-        return len(list(filter(lambda x: x.value.type_of_district == DistrictTypeList.Religious, districts_in_table)))
 
     @staticmethod
     def can_destroy_district(self_player, other_player, district):

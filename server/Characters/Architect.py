@@ -15,9 +15,9 @@ class Architect(Character):
         self_player.districts_in_hand.extend(self.new_cards)
         """The action of this character"""
 
-    def get_progress_information(self, districts=None):
+    def get_progress_information(self):
         """Print info of this action"""
-        return super().get_progress_information(self, None).format("You receive {} {}").format(", ".join([self.new_cards[i].name for i in range(len(self.new_cards) - 1)]), str(self.new_cards[len(self.new_cards) - 1].name))
+        return super().get_progress_information(self).format("You receive {} {}").format(", ".join([self.new_cards[i].name for i in range(len(self.new_cards) - 1)]) if self.new_cards else "0", str(self.new_cards[len(self.new_cards) - 1].name) if self.new_cards else "cards")
 
     def get_info(self):
         """Print info of this character"""
@@ -26,5 +26,3 @@ class Architect(Character):
     def number_of_districts_can_build(self):
         return 3
 
-A = Architect()
-print(A.get_progress_information())
