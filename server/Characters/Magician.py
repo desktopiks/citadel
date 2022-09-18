@@ -18,8 +18,9 @@ class Magician(Character):
         of the District Deck."""
         self.list_of_the_card = None
 
-    def action(self, self_player, other_player=None):
+    def action(self, self_player, other_player, list_of_the_districts):
         """The action of this character"""
+        self.list_of_the_card = list_of_the_districts
         if other_player:
             other_player.districts_in_hand, self_player.districts_in_hand = self_player.districts_in_hand, other_player.districts_in_hand
         else:
@@ -28,12 +29,9 @@ class Magician(Character):
             self.list_of_the_card = DistrictsList.take_the_cards(len(self.list_of_the_card))
             self_player.districts_in_hand.extend(self.list_of_the_card)
 
-    def set_cards(self, list_of_the_card):
-        self.list_of_the_card = list_of_the_card
-
-    def get_progress_information(self):
+    def get_progress_information(self, districts=None):
         """Print info of this action"""
-        return super().get_progress_information(self).format("Your change {} cards").format(len(self.list_of_the_card))
+        return super().get_progress_information(self, None).format("Your change {} cards").format(len(self.list_of_the_card))
 
     def get_info(self):
         """Print info of this character"""

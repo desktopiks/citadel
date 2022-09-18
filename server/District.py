@@ -46,3 +46,6 @@ class DistrictsList(Enum):
     @staticmethod
     def take_the_cards(number=1, type_of_district=None):
         return random.choices([i for i in DistrictsList if (type_of_district is None or i.value.type_of_district == type_of_district)], k=number)
+
+
+print(DistrictsList.take_the_cards(6, DistrictTypeList.Trade))

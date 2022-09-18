@@ -9,7 +9,7 @@ class Thief(Character):
         self.choose_character = None
         self.text = "choose any character and rob him"
 
-    def action(self, self_player, other_player):
+    def action(self, self_player, other_player, list_of_the_districts):
         """The action of this character"""
         self.choose_character = other_player.character
         self_player.change_gold(other_player.gold)
@@ -22,4 +22,7 @@ class Thief(Character):
     def get_info(self):
         """Print info of this character"""
         return super().get_info(self).format(self.character_name, self.text)
+
+    def can_rab(self, other_character):
+        return other_character != CharactersList.Assassin
 
