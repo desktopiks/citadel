@@ -13,14 +13,16 @@ class Window(QWidget):
         coordinate_window_height, coordinate_window_width = int(screen_height / 8) * 2, int(screen_width / 7) * 2 # move window coordinate
         self.move(coordinate_window_width, coordinate_window_height) # change window coordinate
         self.resize(window_width, window_height) # change window size
-        self.show() # show window
+        self.setWindowTitle("Citadels")
+        # self.setWindowIcon()
 
 
 def application():
     app = QApplication(sys.argv)
     game_window = Window()
-    game_window.setWindowTitle('Citadels')
+    game_window.show()
     sys.exit(app.exec_())
+
 
 
 if __name__ == '__main__':
